@@ -33,6 +33,7 @@ ENV SERVER_HTTP_MAX_READ_TIMEOUT "5m"
 ENV USE_WEBSOCKETS "true"
 ENV BACKEND_TLS_NO_VERIFY "true"
 ENV SERVER_TLS_CLIENT_CA_FILES ""
+ENV BACKEND_DEFAULT_AUTHORITY ""
 ENV BACKEND_TLS_CA_FILES ""
 ENV ALLOW_ALL_ORIGINS "true"
 ENV BACKEND_CLIENT_TLS_CERT_FILE ""
@@ -42,6 +43,7 @@ EXPOSE 8080 9443
 
 CMD ["sh", "-c", "/usr/bin/grpcwebproxy \
 --backend_addr=\"${BACKEND_ADDRESS}\" \
+--backend_default_authority=\"${BACKEND_DEFAULT_AUTHORITY}\" \
 --server_tls_cert_file=\"${SERVER_TLS_CERT_FILE}\" \
 --server_tls_key_file=\"${SERVER_TLS_KEY_FILE}\" \
 --server_tls_client_ca_files=\"${SERVER_TLS_CLIENT_CA_FILES}\" \
