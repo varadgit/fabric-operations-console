@@ -136,6 +136,9 @@ export class SeekInfo extends jspb.Message {
   getBehavior(): SeekInfo.SeekBehavior;
   setBehavior(value: SeekInfo.SeekBehavior): void;
 
+  getErrorResponse(): SeekInfo.SeekErrorResponse;
+  setErrorResponse(value: SeekInfo.SeekErrorResponse): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SeekInfo.AsObject;
   static toObject(includeInstance: boolean, msg: SeekInfo): SeekInfo.AsObject;
@@ -151,11 +154,17 @@ export namespace SeekInfo {
     start?: SeekPosition.AsObject,
     stop?: SeekPosition.AsObject,
     behavior: SeekInfo.SeekBehavior,
+    error_response: SeekInfo.SeekErrorResponse,
   }
 
   export enum SeekBehavior {
     BLOCK_UNTIL_READY = 0,
     FAIL_IF_NOT_READY = 1,
+  }
+
+  export enum SeekErrorResponse {
+    STRICT = 0,
+    BEST_EFFORT = 1,
   }
 }
 
@@ -193,4 +202,3 @@ export namespace DeliverResponse {
     BLOCK = 2,
   }
 }
-

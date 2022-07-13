@@ -61,6 +61,9 @@ export class ABLib {					// stands for Atomic Broadcast
 		p_seek_info.setStart(opts.seek_start);
 		p_seek_info.setStop(opts.seek_stop);
 		p_seek_info.setBehavior(AB_SeekInfo.SeekBehavior.FAIL_IF_NOT_READY);	// fabric sdk had this as BLOCK_UNTIL_READY but that seems wrong
+		// p_seek_info.setErrorResponse(AB_SeekInfo.SeekErrorResponse.BEST_EFFORT);
+		p_seek_info.setErrorResponse(1);
+
 		return p_seek_info;
 	}
 

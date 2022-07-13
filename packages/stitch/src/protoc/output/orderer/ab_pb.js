@@ -17,6 +17,7 @@ goog.exportSymbol('proto.orderer.BroadcastResponse', null, global);
 goog.exportSymbol('proto.orderer.DeliverResponse', null, global);
 goog.exportSymbol('proto.orderer.SeekInfo', null, global);
 goog.exportSymbol('proto.orderer.SeekInfo.SeekBehavior', null, global);
+goog.exportSymbol('proto.orderer.SeekInfo.SeekErrorResponse', null, global);
 goog.exportSymbol('proto.orderer.SeekNewest', null, global);
 goog.exportSymbol('proto.orderer.SeekOldest', null, global);
 goog.exportSymbol('proto.orderer.SeekPosition', null, global);
@@ -938,7 +939,11 @@ proto.orderer.SeekInfo.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {!proto.orderer.SeekInfo.SeekBehavior} */ (reader.readEnum());
       msg.setBehavior(value);
       break;
-    default:
+	case 4:
+	  var value = /** @type {!proto.orderer.SeekInfo.SeekErrorResponse} */ (reader.readEnum());
+	  msg.setErrorResponse(value);
+	  break;
+	default:
       reader.skipField();
       break;
     }
@@ -1000,6 +1005,15 @@ proto.orderer.SeekInfo.SeekBehavior = {
   BLOCK_UNTIL_READY: 0,
   FAIL_IF_NOT_READY: 1
 };
+
+/**
+ * @enum {number}
+ */
+ proto.orderer.SeekInfo.SeekErrorResponse = {
+    STRICT: 0,
+    BEST_EFFORT: 1,
+  };
+
 
 /**
  * optional SeekPosition start = 1;
@@ -1074,6 +1088,21 @@ proto.orderer.SeekInfo.prototype.getBehavior = function() {
 proto.orderer.SeekInfo.prototype.setBehavior = function(value) {
   jspb.Message.setProto3EnumField(this, 3, value);
 };
+
+/**
+ * optional SeekErrorResponse error_response = 4;
+ * @return {!proto.orderer.SeekInfo.SeekErrorResponse}
+ */
+ proto.orderer.SeekInfo.prototype.getErrorResponse = function() {
+	return /** @type {!proto.orderer.SeekInfo.SeekErrorResponse} */ (jspb.Message.getFieldWithDefault(this, 4, 1));
+  };
+
+
+  /** @param {!proto.orderer.SeekInfo.SeekErrorResponse} value */
+  proto.orderer.SeekInfo.prototype.setErrorResponse = function(value) {
+	jspb.Message.setProto3EnumField(this, 4, value);
+  };
+
 
 
 
